@@ -46,8 +46,19 @@ public class Main {
         System.out.println("HTML <p>: " + CountBy(doc, 1));
         System.out.println("Images : " + CountBy(doc, 2));
         System.out.println("Forms: " + CountBy(doc, 3));
+
     }
 
+    public static void ProcessForms(Document doc)
+    {
+        Elements forms = doc.getElementsByTag("form");
+
+        for(Element form: forms)
+            System.out.println(form.val());
+    }
+
+
+    // Auxilary Functions
     public static int CountBy(Document doc, int opt)
     {
         String tag;
