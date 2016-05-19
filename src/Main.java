@@ -42,7 +42,7 @@ public class Main {
 
         // Showing metadata
         System.out.println("Title: " + doc.title());
-        System.out.println("HTML lines: " + CountBy(doc, 0));
+        System.out.println("HTML lines: " + CountLines(doc.html()));
         System.out.println("HTML <p>: " + CountBy(doc, 1));
         System.out.println("Images : " + CountBy(doc, 2));
         System.out.println("Forms: " + CountBy(doc, 3));
@@ -76,6 +76,14 @@ public class Main {
 
         return tags.size();
     }
+
+    public static int CountLines(String content)
+    {
+        String[] paper = content.split("\n");
+
+        return paper.length;
+    }
+
 }
 
 
