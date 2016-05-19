@@ -26,7 +26,7 @@ public class Main {
         Document doc = null;
 
         try {
-            System.out.print("Fetching data...");
+            System.out.print("Fetching data... ");
 
             doc = Jsoup.connect(url).get();
 
@@ -40,14 +40,41 @@ public class Main {
 
         // Showing metadata
         System.out.println("Title: " + doc.title());
-        System.out.println("HTML lines: " + CountLines(doc.html()));
+        System.out.println("HTML lines: " + CountBy(doc.html(), 0));
+        System.out.println("HTML <p>: " + CountBy(doc.body().toString(), 1));
+        System.out.println("Images : " + CountBy(doc.body().toString(), 2));
+        System.out.println("Forms: " + CountBy(doc.body().toString(), 3));
     }
 
-    public static int CountLines(String content)
+    public static int CountBy(String content, int opt)
     {
-        String[] paper = content.split("\n");
+        String symbol;
 
-        return paper.length;
+        switch(opt)
+        {
+            case 0: // lines
+                symbol = "\n";
+                break;
+
+            case 1: // paragraphs
+                symbol = "<p>";
+                break;
+
+            case 2: // images
+                symbol = "<img";
+                break;
+
+            case 3: // forms
+                symbol = "<form";
+                break;
+
+            default:
+                return 0;
+        }
+
+        String[] paper = content.split(symbol);
+
+        return paper.length - 1;
     }
 }
 
