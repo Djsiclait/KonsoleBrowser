@@ -74,6 +74,9 @@ public class Main {
                     System.out.println("\t\t\tClass Name: " + input.className());
                     System.out.println("\t\t\tID: " + input.id());
                     System.out.println("\t\t\tCSS Selector: " + input.cssSelector());
+                    System.out.println("\t\t\tSRC: " + input.attr("src"));
+                    System.out.println("\t\t\tSize: " + input.attr("size"));
+                    System.out.println("\t\t\tAccept: " + input.attr("accept"));
                 }
             }
         }
