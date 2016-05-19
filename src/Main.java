@@ -28,7 +28,7 @@ public class Main {
         Document doc = null;
 
         try {
-            System.out.print("Fetching data... ");
+            System.out.print("\nFetching data... ");
 
             doc = Jsoup.connect(url).get();
 
@@ -37,11 +37,11 @@ public class Main {
         }
         catch (IOException error)
         {
-            System.out.println("Error!: " + error.toString());
+            System.out.println("\nError!: " + error.toString());
         }
 
         // Showing metadata
-        System.out.println("\tTitle: " + doc.title());
+        System.out.println("\n\tTitle: " + doc.title());
         System.out.println("\tHTML lines: " + CountLines(doc.html()));
         System.out.println("\tHTML <p>: " + CountBy(doc, 1));
         System.out.println("\tImages: " + CountBy(doc, 2));
@@ -56,12 +56,12 @@ public class Main {
         Elements forms = doc.getElementsByTag("form");
 
         if(forms.size() > 0) {
-            System.out.println("Processing Forms...");
+            System.out.println("\nProcessing Forms...");
 
             int countF = 0;
 
             for (Element form : forms) {
-                System.out.println("\tProcessing Forms " + ++countF + ": ");
+                System.out.println("\n\tProcessing Forms " + ++countF + ": ");
 
                 Elements inputs = form.getElementsByTag("input");
 
@@ -69,8 +69,8 @@ public class Main {
 
                 for(Element input: inputs)
                 {
-                    System.out.println("\t\tProcessing Input " + ++countI + ": ");
-
+                    System.out.println("\n\t\tProcessing Input " + ++countI + ": ");
+                    System.out.println("\t\t\tType: " + input.attr("type"));
                     System.out.println("\t\t\tClass Name: " + input.className());
                     System.out.println("\t\t\tID: " + input.id());
                     System.out.println("\t\t\tCSS Selector: " + input.cssSelector());
@@ -78,7 +78,7 @@ public class Main {
             }
         }
         else
-            System.out.println("There are no forms to process.");
+            System.out.println("\nThere are no forms to process.");
     }
 
 
