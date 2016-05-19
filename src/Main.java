@@ -1,5 +1,7 @@
 import org.jsoup.*;
 import org.jsoup.nodes.Document;
+import org.jsoup.nodes.Element;
+import org.jsoup.select.Elements;
 
 import java.io.IOException;
 import java.util.Scanner;
@@ -40,41 +42,39 @@ public class Main {
 
         // Showing metadata
         System.out.println("Title: " + doc.title());
-        System.out.println("HTML lines: " + CountBy(doc.html(), 0));
-        System.out.println("HTML <p>: " + CountBy(doc.body().toString(), 1));
-        System.out.println("Images : " + CountBy(doc.body().toString(), 2));
-        System.out.println("Forms: " + CountBy(doc.body().toString(), 3));
+        System.out.println("HTML lines: " + CountBy(doc, 0));
+        System.out.println("HTML <p>: " + CountBy(doc, 1));
+        System.out.println("Images : " + CountBy(doc, 2));
+        System.out.println("Forms: " + CountBy(doc, 3));
     }
 
-    public static int CountBy(String content, int opt)
+    public static int CountBy(Document doc, int opt)
     {
-        String symbol;
+        String tag;
+
+        //Element content = doc.getElementById("content");
 
         switch(opt)
         {
-            case 0: // lines
-                symbol = "\n";
-                break;
-
             case 1: // paragraphs
-                symbol = "<p>";
+                tag = "p";
                 break;
 
             case 2: // images
-                symbol = "<img";
+                tag = "img";
                 break;
 
             case 3: // forms
-                symbol = "<form";
+                tag = "form";
                 break;
 
             default:
                 return 0;
         }
 
-        String[] paper = content.split(symbol);
+        Elements tags = doc.getElementsByTag(tag);
 
-        return paper.length - 1;
+        return tags.size();
     }
 }
 
