@@ -52,8 +52,6 @@ public class Main {
     {
         String tag;
 
-        //Element content = doc.getElementById("content");
-
         switch(opt)
         {
             case 1: // paragraphs
