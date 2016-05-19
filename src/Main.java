@@ -41,20 +41,44 @@ public class Main {
         }
 
         // Showing metadata
-        System.out.println("Title: " + doc.title());
-        System.out.println("HTML lines: " + CountLines(doc.html()));
-        System.out.println("HTML <p>: " + CountBy(doc, 1));
-        System.out.println("Images : " + CountBy(doc, 2));
-        System.out.println("Forms: " + CountBy(doc, 3));
+        System.out.println("\tTitle: " + doc.title());
+        System.out.println("\tHTML lines: " + CountLines(doc.html()));
+        System.out.println("\tHTML <p>: " + CountBy(doc, 1));
+        System.out.println("\tImages: " + CountBy(doc, 2));
+        System.out.println("\tForms: " + CountBy(doc, 3));
 
+        // Processing forms
+        ProcessForms(doc, url);
     }
 
-    public static void ProcessForms(Document doc)
+    public static void ProcessForms(Document doc, String url)
     {
         Elements forms = doc.getElementsByTag("form");
 
-        for(Element form: forms)
-            System.out.println(form.val());
+        if(forms.size() > 0) {
+            System.out.println("Processing Forms...");
+
+            int countF = 0;
+
+            for (Element form : forms) {
+                System.out.println("\tProcessing Forms " + ++countF + ": ");
+
+                Elements inputs = form.getElementsByTag("input");
+
+                int countI = 0;
+
+                for(Element input: inputs)
+                {
+                    System.out.println("\t\tProcessing Input " + ++countI + ": ");
+
+                    System.out.println("\t\t\tClass Name: " + input.className());
+                    System.out.println("\t\t\tID: " + input.id());
+                    System.out.println("\t\t\tCSS Selector: " + input.cssSelector());
+                }
+            }
+        }
+        else
+            System.out.println("There are no forms to process.");
     }
 
 
