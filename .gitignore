@@ -1,3 +1,5 @@
 # Every content inside of .idea
 .idea/
 
+# Output file is no required to commit
+out/
