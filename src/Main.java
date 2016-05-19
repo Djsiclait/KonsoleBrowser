@@ -23,17 +23,31 @@ public class Main {
     // Browsing function
     public static void BrowseData(String url)
     {
-        try {
-            System.out.println("Fetching data...");
+        Document doc = null;
 
-            Document doc = Jsoup.connect(url).get();
+        try {
+            System.out.print("Fetching data...");
+
+            doc = Jsoup.connect(url).get();
 
             System.out.println("Ping!"); // Success
+
         }
         catch (IOException error)
         {
             System.out.println("Error!: " + error.toString());
         }
+
+        // Showing metadata
+        System.out.println("Title: " + doc.title());
+        System.out.println("HTML lines: " + CountLines(doc.html()));
+    }
+
+    public static int CountLines(String content)
+    {
+        String[] paper = content.split("\n");
+
+        return paper.length;
     }
 }
 
