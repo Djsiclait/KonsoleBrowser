@@ -15,6 +15,8 @@ public class Main {
 
         String url = input.nextLine(); // saving user input
 
+        // Using the Browser
+        BrowseData(url);
 
     }
 
@@ -22,7 +24,11 @@ public class Main {
     public static void BrowseData(String url)
     {
         try {
+            System.out.println("Fetching data...");
+
             Document doc = Jsoup.connect(url).get();
+
+            System.out.println("Ping!"); // Success
         }
         catch (IOException error)
         {
