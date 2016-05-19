@@ -10,15 +10,28 @@ public class Main {
 
     public static void main(String[] args) {
 
-        // Step 1: asking and capturing the URL
-        System.out.print("URL: ");
+        System.out.println("Welcome to KonsoleBrowser");
 
-        Scanner input = new Scanner(System.in); // setting input to "stdin"
+        do {
+            // Step 1: asking and capturing the URL
+            System.out.print("URL: ");
 
-        String url = input.nextLine(); // saving user input
+            Scanner input = new Scanner(System.in); // setting input to "stdin"
 
-        // Using the Browser
-        BrowseData(url);
+            String url = input.nextLine(); // saving user input
+
+            // Step 2: Using the Browser
+            BrowseData(url);
+
+            System.out.print("\nWould you like to search another site? (Y/N): ");
+
+            if( input.nextLine().toUpperCase().equals("N") )
+                break;
+
+        }while(true);
+
+        // Step 4: Goodbye!
+        System.out.println("\nThank you for the using KonsoleBrowser!");
 
     }
 
@@ -47,7 +60,7 @@ public class Main {
         System.out.println("\tImages: " + CountBy(doc, 2));
         System.out.println("\tForms: " + CountBy(doc, 3));
 
-        // Processing forms
+        // Step 3: Processing forms
         ProcessForms(doc, url);
     }
 
