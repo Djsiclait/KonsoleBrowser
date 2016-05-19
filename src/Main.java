@@ -1,5 +1,7 @@
 import org.jsoup.*;
+import org.jsoup.nodes.Document;
 
+import java.io.IOException;
 import java.util.Scanner;
 
 public class Main {
@@ -19,7 +21,13 @@ public class Main {
     // Browsing function
     public static void BrowseData(String url)
     {
-        
+        try {
+            Document doc = Jsoup.connect(url).get();
+        }
+        catch (IOException error)
+        {
+            System.out.println("Error!: " + error.toString());
+        }
     }
 }
 
