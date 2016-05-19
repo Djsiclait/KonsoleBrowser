@@ -15,6 +15,12 @@ public class Main {
 
 
     }
+
+    // Browsing function
+    public static void BrowseData(String url)
+    {
+        
+    }
 }
 
 
