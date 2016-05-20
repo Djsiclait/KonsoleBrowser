@@ -1,5 +1,8 @@
-# Every content inside of .idea
+# Every content inside of .idea .gradle
 .idea/
+KonsoleBrowser/.idea/
+.gradle/
 
 # Output file is no required to commit
 out/
+KonsoleBrowser/out/
