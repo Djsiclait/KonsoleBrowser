@@ -32,6 +32,7 @@ public class Main {
 
         // Step 4: Goodbye!
         System.out.println("\nThank you for the using KonsoleBrowser!");
+        System.out.println("----Created by Djidjelly P. Siclait");
 
     }
 
