@@ -18,10 +18,8 @@ public class Main {
 
             Scanner input = new Scanner(System.in); // setting input to "stdin"
 
-            String url = input.nextLine(); // saving user input
-
             // Step 2: Using the Browser
-            BrowseData(url);
+            BrowseData(input.nextLine());
 
             System.out.print("\nWould you like to search another site? (Y/N): ");
 
@@ -56,18 +54,18 @@ public class Main {
 
         // Showing metadata
         System.out.println("\n\tTitle: " + doc.title());
-        System.out.println("\tHTML lines: " + CountLines(doc.html()));
-        System.out.println("\tHTML <p>: " + CountBy(doc, 1));
-        System.out.println("\tImages: " + CountBy(doc, 2));
-        System.out.println("\tForms: " + CountBy(doc, 3));
+        System.out.println("\tHTML lines: " + doc.html().split("\n").length);
+        System.out.println("\tHTML <p>: " + doc.getElementsByTag("p").size());
+        System.out.println("\tImages: " + doc.getElementsByTag("img").size());
+        System.out.println("\tForms: " + doc.getElementsByTag("form").size());
 
         // Step 3: Processing forms
-        ProcessForms(doc, url);
+        ProcessForms(doc.getElementsByTag("form"));
     }
 
-    public static void ProcessForms(Document doc, String url)
+    public static void ProcessForms(Elements tags)
     {
-        Elements forms = doc.getElementsByTag("form");
+        Elements forms = tags;
 
         if(forms.size() > 0) {
             System.out.println("\nProcessing Forms...");
@@ -92,43 +90,6 @@ public class Main {
         else
             System.out.println("\nThere are no forms to process.");
     }
-
-
-    // Auxilary Functions
-    public static int CountBy(Document doc, int opt)
-    {
-        String tag;
-
-        switch(opt)
-        {
-            case 1: // paragraphs
-                tag = "p";
-                break;
-
-            case 2: // images
-                tag = "img";
-                break;
-
-            case 3: // forms
-                tag = "form";
-                break;
-
-            default:
-                return 0;
-        }
-
-        Elements tags = doc.getElementsByTag(tag);
-
-        return tags.size();
-    }
-
-    public static int CountLines(String content)
-    {
-        String[] paper = content.split("\n");
-
-        return paper.length;
-    }
-
 }
 
 
